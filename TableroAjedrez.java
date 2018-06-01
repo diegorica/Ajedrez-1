@@ -1,10 +1,10 @@
-package Ajedrez;
+package ajedrez;
 
 import java.util.Scanner;
 
 public class TableroAjedrez {
 	
-	private Caja[][] tablero=new Caja[9][9];
+	private Caja[][] tablero=new Caja[8][8];
 	private static TableroAjedrez miTableroAjedrez = new TableroAjedrez();
 	
 	private TableroAjedrez()
@@ -70,11 +70,11 @@ public class TableroAjedrez {
 		return miTableroAjedrez;
 	}
 	
-	public Caja obtenerCaja(int colum, int fila){
-		return this.tablero[colum][fila];
+	public Caja obtenerCaja(int fila, int colum){
+		return this.tablero[fila][colum];
 	}
 	
-	private int escanearNumero(){
+	public int escanearNumero(){
 		int n;
 		Scanner entrada = new Scanner(System.in);
 		n = entrada.nextInt();
@@ -119,18 +119,12 @@ public class TableroAjedrez {
 		return vivo;
 	}
 	
-	private void moverPieza(int pFilaComienzo, int pColumnaComienzo, int pFilaDestino, int pColumnaDestino){
+	public void moverPieza(int pFilaComienzo, int pColumnaComienzo, int pFilaDestino, int pColumnaDestino){
 		TableroAjedrez TA = TableroAjedrez.getTableroAjedrez();
-		Pieza P = TA.obtenerCaja(pColumnaComienzo, pFilaComienzo).getPieza();
-		if (P instanceof Peon && ((pColumnaDestino==7 && P.esBlanca()) || (!P.esBlanca() && pColumnaDestino==0)))
-		{
-			Reina R = new Reina(P.esBlanca());
-			P = R;
-		}
-		TA.obtenerCaja(pColumnaComienzo, pFilaComienzo).cambiarPieza(null);
-		TA.obtenerCaja(pColumnaDestino, pFilaDestino).cambiarPieza(P);
+		Pieza P = TA.obtenerCaja(pFilaComienzo,pColumnaComienzo).getPieza();
+		TA.obtenerCaja(pFilaComienzo,pColumnaComienzo).cambiarPieza(null);
+		TA.obtenerCaja(pFilaDestino,pColumnaDestino).cambiarPieza(P);
 	}
-
 	
 	public void imprimirTableroAjedrez(){
 		TableroAjedrez TA = TableroAjedrez.getTableroAjedrez();
@@ -152,9 +146,9 @@ public class TableroAjedrez {
 		System.out.println("| " + TA.obtenerCaja(0, 0).imprimirPieza() + " | " + TA.obtenerCaja(0, 1).imprimirPieza() + " | " + TA.obtenerCaja(0, 2).imprimirPieza() + " | " + TA.obtenerCaja(0, 3).imprimirPieza() + " | " + TA.obtenerCaja(0, 4).imprimirPieza() + " | " + TA.obtenerCaja(0, 5).imprimirPieza() + " | " + TA.obtenerCaja(0, 6).imprimirPieza() + " | " + TA.obtenerCaja(0, 7).imprimirPieza() + " |");
 		System.out.println("|----|----|----|----|----|----|----|----|");
 	}
+	
 
 	
-	public void jugarPartida(){
-		
-	}
+
 }
+
