@@ -146,9 +146,39 @@ public class TableroAjedrez {
 		System.out.println("| " + TA.obtenerCaja(0, 0).imprimirPieza() + " | " + TA.obtenerCaja(0, 1).imprimirPieza() + " | " + TA.obtenerCaja(0, 2).imprimirPieza() + " | " + TA.obtenerCaja(0, 3).imprimirPieza() + " | " + TA.obtenerCaja(0, 4).imprimirPieza() + " | " + TA.obtenerCaja(0, 5).imprimirPieza() + " | " + TA.obtenerCaja(0, 6).imprimirPieza() + " | " + TA.obtenerCaja(0, 7).imprimirPieza() + " |");
 		System.out.println("|----|----|----|----|----|----|----|----|");
 	}
-	
+	public void jugarPartida() {
+		int turno=1;
+		TableroAjedrez TA=TableroAjedrez.getTableroAjedrez();
+		int fI;
+		int cI;
+		int fD;
+		int cD;
+		
+		while(this.reyBlancoVivo() && this.reyNegroVivo()) {
+			TA.imprimirTableroAjedrez();
+			System.out.println("Escriba la fila de Inicio");
+			fI=this.escanearNumero();
+			System.out.println("Escriba la columna de Inicio");
+			cI=this.escanearNumero();
+			System.out.println("Escriba la fila de Destino");
+			fD=this.escanearNumero();
+			System.out.println("Escriba la columna de Destino");
+			cD=this.escanearNumero();
+			if (TA.obtenerCaja(fI, cI).getPieza().posibleMovimiento(fI, cI, fD, cD)) {
+				TA.moverPieza(fI, cI, fD, cD);
+				}
+			else {
+				System.out.println("No se puede.");
+			}
+			turno+=1;
+			
+				
+				}
+			
+		}
+	}
 
 	
 
-}
+
 
